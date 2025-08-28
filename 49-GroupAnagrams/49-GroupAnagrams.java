@@ -1,4 +1,4 @@
-// Last updated: 28/08/2025, 11:20:43
+// Last updated: 28/08/2025, 11:21:31
 class Solution {
     public static String GetKey(String s) {
         int freq[] = new int[26];
@@ -7,7 +7,7 @@ class Solution {
         }
         StringBuilder sb = new StringBuilder();
         for(int i=0; i<26; i++) {
-            sb.append(freq[i]+" ");
+            sb.append(freq[i]+"~");
         }
         return sb.toString();
     }
