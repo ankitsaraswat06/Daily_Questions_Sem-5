@@ -1,30 +1,30 @@
-// Last updated: 02/08/2025, 18:59:15
+// Last updated: 28/08/2025, 11:20:43
 class Solution {
-    public List<List<String>> groupAnagrams(String[] strs) {
-        String arry[] = new String[strs.length];
-        List<List<String>> ans = new ArrayList<>();
-        for(int i=0; i<strs.length; i++) {
-            char[] arr = strs[i].toCharArray();
-            Arrays.sort(arr);
-            arry[i] = new String(arr);
+    public static String GetKey(String s) {
+        int freq[] = new int[26];
+        for(int i=0; i<s.length(); i++) {
+            freq[s.charAt(i)-'a']++;
         }
-        boolean isVisited[] = new boolean[strs.length];
-        for(int i=0; i<arry.length; i++) {
-            if(!isVisited[i]) {
-                List<String> inner = new ArrayList<>();
-                inner.add(strs[i]); 
-                isVisited[i] = true;
-                for(int j=i+1; j<arry.length; j++) {
-                    if(arry[i].equals(arry[j]) && !isVisited[j]) {
-                        inner.add(strs[j]);
-                        isVisited[j] = true;
-                    }
-                }
-                ans.add(inner);
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i<26; i++) {
+            sb.append(freq[i]+" ");
+        }
+        return sb.toString();
+    }
+    public List<List<String>> groupAnagrams(String[] strs) {
+        HashMap<String, List<String>> map= new HashMap<>();
+        for(int i=0; i<strs.length; i++) {
+            String key = GetKey(strs[i]);
+            System.out.println(key);
+            if(!map.containsKey(key)) {
+                map.put(key, new ArrayList<>());
             }
-
+            map.get(key).add(strs[i]);
+        }
+        List<List<String>> ans = new ArrayList<>();
+        for(String s: map.keySet()) {
+            ans.add(map.get(s));
         }
         return ans;
-        
     }
 }
