@@ -1,24 +1,13 @@
-// Last updated: 02/08/2025, 18:57:32
+// Last updated: 28/08/2025, 10:53:14
 class Solution {
     public boolean isAnagram(String s, String t) {
-        int count1[] = new int[26];
-        int count2[] = new int[26];
-
-        for(int i=0; i<s.length(); i++) {
-            count1[(int)(s.charAt(i) - 'a')] ++;
-        }
-
-        for(int i=0; i<t.length(); i++) {
-            count2[(int)(t.charAt(i) - 'a')] ++;
-        }
-
-        for(int i=0; i<26; i++) {
-            if(count1[i]!=count2[i]) {
-                return false;
-            }
-        }
-
+        int f1[] = new int[26];
+        int f2[] = new int[26];
+        for(int i=0; i<s.length(); i++) f1[s.charAt(i)-'a']++;
+        for(int i=0; i<t.length(); i++) f2[t.charAt(i)-'a']++;
+        for(int i=0; i<f1.length; i++) if(f1[i]!=f2[i]) return false;
         return true;
-        
+
+
     }
 }
