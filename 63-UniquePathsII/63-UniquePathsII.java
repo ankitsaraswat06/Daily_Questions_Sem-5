@@ -1,18 +1,21 @@
-// Last updated: 02/09/2025, 16:26:08
+// Last updated: 03/09/2025, 08:02:41
 class Solution {
-    public int rec(int[][] arr, int row, int col, int[][] dp) {
-        if(row<=arr.length-1 && col<=arr[0].length-1 && arr[row][col]==1) return 0;
-        if(row>=arr.length || col>= arr[0].length) return 0;
-        if(row==arr.length-1 && col==arr[0].length-1) return 1;
-        if(dp[row][col]!=-1) return dp[row][col];
-        int down =  rec(arr, row+1, col,dp);
-        int right =  rec(arr, row, col+1,dp);
-        return dp[row][col] = down + right;
-    }
-    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        int[][] dp = new int[obstacleGrid.length][obstacleGrid[0].length];
-        for(int i=0; i<dp.length; i++)
-        for(int j=0; j<dp[0].length; j++) dp[i][j] = -1;
-        return rec(obstacleGrid, 0, 0, dp);
+    public int uniquePathsWithObstacles(int[][] arr) {
+        int[][] dp = new int[arr.length][arr[0].length];
+        for(int i=0; i<arr.length; i++) {
+            for(int j=0; j<arr[0].length; j++) {
+                if(arr[i][j]==1) dp[i][j] = 0;
+                else if(i==0 && j==0) dp[i][j] = 1;
+                else {
+                    int down = 0;
+                    if(i>0) down = dp[i-1][j];
+                    int right =0;
+                    if(j>0) right = dp[i][j-1];
+
+                    dp[i][j] = down + right;
+                }
+            }
+        }
+        return dp[arr.length-1][arr[0].length-1];
     }
 }
