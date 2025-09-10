@@ -1,4 +1,4 @@
-// Last updated: 10/09/2025, 12:40:49
+// Last updated: 10/09/2025, 12:41:45
 class Solution {
     public int rec(int[][] matrix, int row, int col, int[][] dp) {
         if(row==matrix.length-1) return matrix[row][col];
@@ -16,7 +16,7 @@ class Solution {
             for (int[] row : dp) {
                 Arrays.fill(row, Integer.MIN_VALUE);
             }
-        for(int i=0; i<matrix[0].length; i++) {
+        for(int i=0; i<matrix.length; i++) {
             int curr = rec(matrix, 0, i,dp);
             min = Math.min(curr, min);
         }
