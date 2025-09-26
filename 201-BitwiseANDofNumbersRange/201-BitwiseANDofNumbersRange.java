@@ -1,4 +1,4 @@
-// Last updated: 26/09/2025, 11:41:59
+// Last updated: 26/09/2025, 11:43:32
 class Solution {
     public int rangeBitwiseAnd(int left, int right) {
         int c = 0;
@@ -7,6 +7,6 @@ class Solution {
             right = right>>1;
             c++;
         }
-        return left<<c;
+        return right<<c;
     }
 }
