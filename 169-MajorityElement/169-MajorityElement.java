@@ -1,19 +1,13 @@
-// Last updated: 02/08/2025, 18:58:03
+// Last updated: 26/09/2025, 11:51:27
 class Solution {
     public int majorityElement(int[] nums) {
-        int elected = nums[0];
-        int votes = 1;
-        for(int i=1; i<nums.length; i++) {
-            if(nums[i]==elected) votes++;
-            else {
-                votes--;
-                if(votes==0) {
-                    elected = nums[i];
-                    votes = 1;
-                }
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        for(int i: nums) {
+            map.put(i, map.getOrDefault(i, 0)+1);
+            if(map.get(i)>=(nums.length/2+1)) {
+                return i;
             }
         }
-        return elected;
-
+        return -1;
     }
 }
