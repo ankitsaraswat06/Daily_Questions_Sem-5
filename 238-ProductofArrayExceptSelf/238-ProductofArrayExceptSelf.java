@@ -1,4 +1,4 @@
-// Last updated: 26/09/2025, 12:09:50
+// Last updated: 26/09/2025, 12:11:33
 class Solution {
     public int[] productExceptSelf(int[] nums) {
         int prefix[] = new int[nums.length];
