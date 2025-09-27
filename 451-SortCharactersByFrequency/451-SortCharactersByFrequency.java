@@ -1,28 +1,21 @@
-// Last updated: 02/08/2025, 18:56:36
+// Last updated: 27/09/2025, 14:13:33
 class Solution {
     public String frequencySort(String s) {
         HashMap<Character, Integer> map = new HashMap<>();
         for(int i=0; i<s.length(); i++) {
             map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0)+1);
-        }  
-        System.out.print(map);
-        StringBuilder st = new StringBuilder();
-        int t = map.size();
-        while(t-- > 0) {
-            char maxChar = 'a';
-            int maxCount = 0;
-            for(char i: map.keySet()) {
-                int count = map.get(i);
-                if(count> maxCount) {
-                    maxCount = count;
-                    maxChar = i;
-                }
-            }
-            for(int i=0; i<maxCount; i++) {
-                st.append(maxChar);
-            }
-            map.remove(maxChar);
         }
-        return st.toString();
+        PriorityQueue<Map.Entry<Character, Integer>> pq = new PriorityQueue<>((e1, e2) -> e2.getValue() - e1.getValue());
+        for(Map.Entry<Character, Integer> e : map.entrySet()) {
+            pq.add(e);
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!pq.isEmpty()) {
+            int c = pq.peek().getValue();
+            char ch = pq.peek().getKey();
+            for(int i=0; i<c; i++) sb.append(ch);
+            pq.poll();
+        }
+        return sb.toString();
     }
 }
