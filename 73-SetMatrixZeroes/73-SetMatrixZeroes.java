@@ -1,19 +1,19 @@
-// Last updated: 29/09/2025, 13:41:42
+// Last updated: 29/09/2025, 14:44:33
 class Solution {
     public void setZeroes(int[][] matrix) {
-        boolean rows[] = new boolean[matrix.length];
-        boolean cols[] = new boolean[matrix[0].length];
+        HashSet<Integer> rows = new HashSet<>();
+        HashSet<Integer> cols = new HashSet<>();
         for(int i=0; i<matrix.length; i++) {
             for(int j=0; j<matrix[0].length; j++) {
                 if(matrix[i][j]==0) {
-                    rows[i]= true;
-                    cols[j] = true;
+                    rows.add(i);
+                    cols.add(j);
                 }
             }
         }
         for(int i=0; i<matrix.length; i++) {
             for(int j=0; j<matrix[0].length; j++) {
-                if(rows[i] || cols[j]) {
+                if(rows.contains(i) || cols.contains(j)) {
                     matrix[i][j] = 0;
                 }
             }
