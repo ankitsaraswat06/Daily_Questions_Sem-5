@@ -1,4 +1,4 @@
-// Last updated: 27/09/2025, 15:14:23
+// Last updated: 29/09/2025, 13:17:06
 class Solution {
     public boolean isPossible(int [] piles, int h, int speed) {
         int hour = 0;
