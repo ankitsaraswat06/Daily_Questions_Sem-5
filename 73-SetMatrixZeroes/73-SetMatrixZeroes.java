@@ -1,5 +1,15 @@
-// Last updated: 29/09/2025, 14:44:33
+// Last updated: 29/09/2025, 14:50:40
 class Solution {
+    public void emptyRow(int[][] arr, int row) {
+        for(int col=0; col<arr[0].length; col++) {
+            arr[row][col] = 0;
+        }
+    }
+    public void emptyCol(int[][] arr, int col) {
+        for(int row=0; row<arr.length; row++) {
+            arr[row][col] = 0;
+        }
+    }
     public void setZeroes(int[][] matrix) {
         HashSet<Integer> rows = new HashSet<>();
         HashSet<Integer> cols = new HashSet<>();
@@ -11,12 +21,11 @@ class Solution {
                 }
             }
         }
-        for(int i=0; i<matrix.length; i++) {
-            for(int j=0; j<matrix[0].length; j++) {
-                if(rows.contains(i) || cols.contains(j)) {
-                    matrix[i][j] = 0;
-                }
-            }
+        for(int row: rows) {
+            emptyRow(matrix, row);
+        }
+        for(int col: cols) {
+            emptyCol(matrix, col);
         }
         
     }
