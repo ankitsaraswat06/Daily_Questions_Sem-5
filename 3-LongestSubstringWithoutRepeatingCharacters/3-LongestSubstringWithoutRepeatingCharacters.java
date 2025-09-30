@@ -1,4 +1,4 @@
-// Last updated: 30/09/2025, 11:06:51
+// Last updated: 30/09/2025, 21:05:33
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         int[] freq = new int[255];
