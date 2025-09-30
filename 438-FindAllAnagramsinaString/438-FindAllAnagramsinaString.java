@@ -1,4 +1,4 @@
-// Last updated: 30/09/2025, 11:52:05
+// Last updated: 30/09/2025, 21:33:27
 class Solution {
     public boolean isZero(int[] freq) {
         for(int k: freq) {
