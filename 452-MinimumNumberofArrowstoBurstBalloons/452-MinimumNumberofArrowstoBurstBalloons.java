@@ -1,4 +1,4 @@
-// Last updated: 01/10/2025, 11:01:12
+// Last updated: 01/10/2025, 11:03:30
 class Solution {
     public int findMinArrowShots(int[][] points) {
         Arrays.sort(points, (a,b)->Integer.compare(a[1], b[1]));
