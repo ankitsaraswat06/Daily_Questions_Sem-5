@@ -1,16 +1,12 @@
-// Last updated: 17/09/2025, 22:13:34
+// Last updated: 01/10/2025, 14:14:54
 class Solution {
-    public boolean rec(int [] nums, int idx, Boolean[] dp) {
-        if(idx>=nums.length) return false;
-        if(idx==nums.length-1) return true;
-        if(dp[idx]!=null) return dp[idx];
-        for(int i=1; i<=nums[idx]; i++) {
-            if(rec(nums, idx+i, dp)) return dp[idx] = true;
-        }
-        return dp[idx] = false;
-    }
     public boolean canJump(int[] nums) {
-        Boolean dp[] = new Boolean[nums.length];
-        return rec(nums, 0, dp);
+        int n= nums.length;
+        int maxReach = 0;
+        for(int i=0; i<n; i++) {
+            if(i>maxReach) return false;
+            maxReach = Math.max(maxReach, i+nums[i]);
+        }  
+        return true;
     }
 }
