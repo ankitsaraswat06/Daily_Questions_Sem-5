@@ -1,4 +1,4 @@
-// Last updated: 01/10/2025, 21:25:12
+// Last updated: 01/10/2025, 21:25:29
 class Solution {
     public boolean lemonadeChange(int[] bills) {
         int[] freq = new int[3];
