@@ -1,4 +1,4 @@
-// Last updated: 03/10/2025, 20:38:15
+// Last updated: 03/10/2025, 20:45:22
 class Solution {
     public static void rec(int n, int k, List<Integer> ll, List<List<Integer>> ans) {
         if(n==0) {
