@@ -1,14 +1,14 @@
-// Last updated: 02/08/2025, 18:57:12
+// Last updated: 03/10/2025, 11:55:52
 class Solution {
+    public static void reverse(char[] s, int i, int j) {
+        if(i>j) return;
+        char temp = s[i];
+        s[i] = s[j];
+        s[j] = temp;
+        reverse(s ,i+1, j-1);
+
+    }
     public void reverseString(char[] s) {
-        int si = 0;
-        int ei = s.length-1;
-        while(si<ei) {
-            char temp = s[si];
-            s[si] = s[ei];
-            s[ei] = temp;
-            si++;
-            ei--;
-        } 
+        reverse(s, 0, s.length-1);
     }
 }
