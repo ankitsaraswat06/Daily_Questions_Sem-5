@@ -1,22 +1,20 @@
-// Last updated: 02/08/2025, 18:59:45
+// Last updated: 04/10/2025, 12:19:04
 class Solution {
-    public void Print(int n, int closed, int opened, String ans, ArrayList<String> list) {
-        if(opened == n && closed == n) {
-            list.add(ans);
-            System.out.println(ans);
+    public void rec(int n, String s, int open, int close , List<String> ans) {
+        if(open==n && close==n) {
+            ans.add(s);
             return;
         }
-        if(opened>n || closed> opened) {
-            return;
+        if(open < n) {
+            rec(n, s+"(" , open+1, close, ans);
         }
-
-        Print(n, closed, opened+1 , ans+"(", list);
-        Print(n, closed+1, opened,  ans+ ")", list);
-
+        if(close<open) {
+            rec(n, s+")", open, close+1, ans);
+        }
     }
     public List<String> generateParenthesis(int n) {
-        ArrayList<String> list = new ArrayList<>();
-        Print(n, 0, 0, "", list);
-        return list;
+        List<String> ans= new ArrayList<>();
+        rec(n, "", 0, 0,ans);
+        return ans;
     }
 }
