@@ -1,20 +1,29 @@
-// Last updated: 02/09/2025, 07:31:08
+// Last updated: 06/10/2025, 11:48:12
 class Solution {
-    public static int find(int[] nums, int si, int ei) {
-        int prev = nums[si];
-        int prev2 = 0;
-        for(int i=si+1; i<=ei; i++) {
-            int curr = Math.max(nums[i] +prev2, prev);
+    public int rob(int[] arr) {
+        if(arr.length==1) return arr[0];
+        int prev2 =0;
+        int prev = arr[0];
+        for(int i=1; i<arr.length-1; i++) {
+            int pick = arr[i] + prev2;
+            int nonpick = prev;
+            int curr = Math.max(pick, nonpick);
             prev2 = prev;
             prev = curr;
+
         }
-        return prev;
-    }
-    
-    public int rob(int[] nums) {
-        int ans1 = find(nums, 0, nums.length-2);
-        int ans2 = Integer.MIN_VALUE;
-        if(nums.length>1) ans2 = find(nums, 1, nums.length-1);
+        int ans1 = prev;
+        prev2 =0;
+        prev = arr[1];
+        for(int i=2; i<arr.length; i++) {
+            int pick = arr[i] + prev2;
+            int nonpick = prev;
+            int curr = Math.max(pick, nonpick);
+            prev2 = prev;
+            prev = curr;
+
+        }
+        int ans2 = prev;
         return Math.max(ans1, ans2);
     }
 }
