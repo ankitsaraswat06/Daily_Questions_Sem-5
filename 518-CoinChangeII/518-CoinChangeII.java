@@ -1,4 +1,4 @@
-// Last updated: 04/09/2025, 12:09:27
+// Last updated: 10/10/2025, 19:55:26
 class Solution {
     public int change(int amount, int[] coin) {
         int[][] dp = new int[coin.length + 1][amount+1];
