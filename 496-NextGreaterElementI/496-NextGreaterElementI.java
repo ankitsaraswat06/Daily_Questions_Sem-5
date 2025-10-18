@@ -1,4 +1,4 @@
-// Last updated: 02/08/2025, 18:56:31
+// Last updated: 18/10/2025, 19:44:32
 class Solution {
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
         int n2 = nums2.length;
