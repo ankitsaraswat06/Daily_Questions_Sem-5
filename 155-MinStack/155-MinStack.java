@@ -1,24 +1,23 @@
-// Last updated: 02/08/2025, 18:58:10
+// Last updated: 21/10/2025, 15:01:34
 class MinStack {
     class Pair {
         int first;
         int second;
-        public Pair(int first, int second)  {
+        Pair(int first, int second) {
             this.first = first;
             this.second = second;
         }
     }
     private Stack<Pair> st;
-
     public MinStack() {
-        st = new Stack<>();        
+        st = new Stack<>();
     }
     
     public void push(int val) {
         if(st.isEmpty()) st.push(new Pair(val, val));
         else {
-            int min = Math.min(val, st.peek().second);
-            st.push(new Pair(val, min));
+            Pair p = new Pair(val, Math.min(st.peek().second, val));
+            st.push(p);
         }
     }
     
@@ -28,7 +27,6 @@ class MinStack {
     
     public int top() {
         return st.peek().first;
-        
     }
     
     public int getMin() {
