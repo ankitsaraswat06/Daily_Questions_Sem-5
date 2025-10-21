@@ -1,4 +1,4 @@
-// Last updated: 02/08/2025, 18:59:22
+// Last updated: 21/10/2025, 15:41:12
 class Solution {
     public int trap(int[] height) {
         int n = height.length;
