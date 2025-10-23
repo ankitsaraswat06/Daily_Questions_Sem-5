@@ -1,4 +1,4 @@
-// Last updated: 30/09/2025, 12:33:09
+// Last updated: 23/10/2025, 20:56:26
 class Solution {
     public int largestRectangleArea(int[] arr) {
         int n = arr.length;
