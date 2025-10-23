@@ -1,4 +1,4 @@
-// Last updated: 02/08/2025, 18:58:16
+// Last updated: 23/10/2025, 20:48:49
 class Solution {
     public boolean isOperator(String str) {
         if(str.equals("+") || str.equals("-") || str.equals("*") || str.equals("/")) {
