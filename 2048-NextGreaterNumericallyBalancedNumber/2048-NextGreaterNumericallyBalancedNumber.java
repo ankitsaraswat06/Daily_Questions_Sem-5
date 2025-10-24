@@ -1,4 +1,4 @@
-// Last updated: 24/10/2025, 21:33:26
+// Last updated: 24/10/2025, 21:37:45
 class Solution {
     public boolean isBal(int n) {
         TreeMap<Integer, Integer> map = new TreeMap<>();
@@ -13,10 +13,13 @@ class Solution {
         return true;
     }
     public int nextBeautifulNumber(int n) {
-        int ans = n+1;
-        while(true) {
-            if(isBal(ans)) return ans;
-            ans++;
+        int ans = 0;
+        for(int i=n+1; i<=1224444; i++) {
+            if(isBal(i)) {
+                ans=i;
+                break;
+            }
         }
+        return ans;
     }
 }
