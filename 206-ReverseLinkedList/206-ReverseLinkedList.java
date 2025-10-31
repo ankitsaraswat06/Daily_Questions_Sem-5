@@ -1,4 +1,4 @@
-// Last updated: 02/08/2025, 18:57:48
+// Last updated: 31/10/2025, 12:47:46
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -11,18 +11,14 @@
  */
 class Solution {
     public ListNode reverseList(ListNode head) {
-       if(head==null || head.next == null) return head;
-       Stack<Integer> st = new Stack<>();
-       ListNode temp = head;
-       while(temp!=null) {
-        st.push(temp.val);
-        temp= temp.next;
-       } 
-       temp = head;
-       while(temp!=null) {
-        temp.val =st.pop();
-        temp = temp.next;
+       ListNode prev = null;
+       ListNode curr = head;
+       while(curr!=null) {
+        ListNode next= curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
        }
-       return head;
+       return prev;
     }
 }
