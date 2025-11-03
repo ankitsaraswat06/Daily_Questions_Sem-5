@@ -1,17 +1,17 @@
-// Last updated: 03/11/2025, 20:29:50
+// Last updated: 03/11/2025, 20:39:17
 class Solution {
-    public int ways(int[] nums, int target, int curr, int idx) {
-        if(idx==nums.length) {
-            if(curr==target) return 1;
-            return 0;
-        }
-        
-        int a=ways(nums, target, curr-nums[idx], idx+1);
-        int b=ways(nums, target, curr+nums[idx], idx+1);
-        return a+b;
+    public int ways(int[] nums, int target, int curr, int idx, HashMap<String, Integer> memo) {
+        if(idx==nums.length) return curr==target?1: 0;
+        String key = idx + "," + curr;
+        if(memo.containsKey(key)) return memo.get(key);
+        int pos = ways(nums, target, curr+nums[idx], idx+1, memo);
+        int neg = ways(nums, target, curr-nums[idx], idx+1, memo);
+        memo.put(key, pos+neg);
+        return pos+neg;
     }
     public int findTargetSumWays(int[] nums, int target) {
-        return ways(nums, target, 0, 0);
+        HashMap<String, Integer> memo = new HashMap<>();
+        return ways(nums, target, 0, 0, memo);
         
     }
 }
