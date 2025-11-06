@@ -1,4 +1,4 @@
-// Last updated: 06/10/2025, 11:42:49
+// Last updated: 06/11/2025, 14:53:06
 class Solution {
 
     public int rob(int[] arr) {
@@ -12,7 +12,6 @@ class Solution {
             prev = curr;
 
         }
-        return prev;
-        
+        return prev; 
     }
 }
