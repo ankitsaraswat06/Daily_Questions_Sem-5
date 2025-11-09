@@ -1,21 +1,21 @@
-// Last updated: 03/09/2025, 08:02:41
+// Last updated: 09/11/2025, 10:14:38
 class Solution {
-    public int uniquePathsWithObstacles(int[][] arr) {
-        int[][] dp = new int[arr.length][arr[0].length];
-        for(int i=0; i<arr.length; i++) {
-            for(int j=0; j<arr[0].length; j++) {
-                if(arr[i][j]==1) dp[i][j] = 0;
-                else if(i==0 && j==0) dp[i][j] = 1;
-                else {
-                    int down = 0;
-                    if(i>0) down = dp[i-1][j];
-                    int right =0;
-                    if(j>0) right = dp[i][j-1];
+    public int f(int i, int j, int [][] grid, int[][] dp) {
+        if(i<0 || j<0) return 0;
+        if(grid[i][j]==1) return 0;
+        if(i==0 && j==0) return 1;
+        if(dp[i][j]!=-1) return dp[i][j];
 
-                    dp[i][j] = down + right;
-                }
-            }
-        }
-        return dp[arr.length-1][arr[0].length-1];
+        int up = f(i-1, j, grid, dp);
+        int left = f(i, j-1, grid, dp);
+        return dp[i][j] = up+left;
+    }
+    public int uniquePathsWithObstacles(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][] dp = new int[m][n];
+        for(int[] arr: dp) Arrays.fill(arr, -1);
+        return f(m-1, n-1, grid, dp);
+        
     }
 }
