@@ -1,23 +1,21 @@
-// Last updated: 25/09/2025, 11:07:33
+// Last updated: 09/11/2025, 15:10:09
 class Solution {
-    public int rec(List<List<Integer>> triangle, int row, int idx, int[][] dp) {
-        if(row>=triangle.size()) return 0;
-        if(dp[row][idx]!=Integer.MAX_VALUE) return dp[row][idx];
-        int left = rec(triangle, row+1, idx, dp)+triangle.get(row).get(idx);
-        int right = rec(triangle, row+1, idx+1, dp)+triangle.get(row).get(idx);
-        return dp[row][idx] = Math.min(left, right);
+    public int f(int i, int j, List<List<Integer>> triangle, int[][] dp) {
+        if(i>=triangle.size() || j>=triangle.get(i).size()) return 0;
+        if(dp[i][j]!=Integer.MIN_VALUE) return dp[i][j];
+        int same = f(i+1, j, triangle, dp);
+        int ahead = f(i+1, j+1, triangle, dp);
+        return dp[i][j] = Math.min(same, ahead) + triangle.get(i).get(j);
     }
     public int minimumTotal(List<List<Integer>> triangle) {
-        int n = triangle.size();
-        
-        // Initialize dp with Integer.MAX_VALUE
-        int[][] dp = new int[n][];
-        for (int i = 0; i < n; i++) {
+        int[][] dp = new int[triangle.size()][];
+        for(int i=0; i<triangle.size(); i++) {
             dp[i] = new int[triangle.get(i).size()];
-            Arrays.fill(dp[i], Integer.MAX_VALUE);
         }
-        return rec(triangle, 0, 0, dp);
-        
+        for(int arr[]: dp) {
+            Arrays.fill(arr, Integer.MIN_VALUE);
+        }
+        return f(0,0, triangle, dp);
         
     }
 }
