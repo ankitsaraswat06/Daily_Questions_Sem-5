@@ -1,20 +1,18 @@
-// Last updated: 10/10/2025, 19:54:58
+// Last updated: 09/11/2025, 10:32:14
 class Solution {
-    public int rec(int cr, int cc, int[][] grid, int[][] dp) {
-        if(cr >= grid.length || cc >=grid[0].length) return Integer.MAX_VALUE;
-        if(cr==grid.length-1 && cc==grid[0].length-1) return grid[cr][cc];
-        if(dp[cr][cc]!= -1) return dp[cr][cc];
-        int d = rec(cr+1, cc, grid, dp);
-        int r = rec(cr, cc+1, grid, dp);
-        return dp[cr][cc] = Math.min(d, r) + grid[cr][cc];
+    public int f(int i, int j, int[][] grid, int[][] dp) {
+        if(i==0 && j==0) return grid[i][j];
+        if(i<0 || j<0) return Integer.MAX_VALUE;
+        if(dp[i][j]!=-1) return dp[i][j];
+        int up = f(i-1, j, grid, dp);
+        int left = f(i, j-1, grid, dp);
+        return dp[i][j] =  grid[i][j] + Math.min(up, left);
     }
     public int minPathSum(int[][] grid) {
-        int[][] dp = new int[grid.length][grid[0].length];
-        for(int i=0; i<dp.length; i++) {
-            for(int j=0; j<dp[0].length; j++) {
-                dp[i][j] = -1;
-            }
-        }
-        return rec(0, 0, grid, dp);
+        int m = grid.length; 
+        int n= grid[0].length;
+        int[][] dp = new int[m][n];
+        for(int []arr: dp) Arrays.fill(arr,-1);
+        return f(m-1, n-1, grid, dp);
     }
 }
