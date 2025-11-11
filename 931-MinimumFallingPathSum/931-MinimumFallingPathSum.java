@@ -1,25 +1,24 @@
-// Last updated: 04/09/2025, 07:24:12
+// Last updated: 11/11/2025, 06:51:34
 class Solution {
-    public int rec(int[][] matrix, int row, int col, int[][] dp) {
-        if(row==matrix.length-1) return matrix[row][col];
-        if(dp[row][col] != -101) return dp[row][col];
-        int dLeft = Integer.MAX_VALUE;
-        if(row<matrix.length-1 && col>=1) dLeft = rec(matrix, row+1, col-1, dp) + matrix[row][col];
-        int dRight = Integer.MAX_VALUE;
-        if(row<matrix.length-1 && col<matrix[0].length-1) dRight = rec(matrix, row+1, col+1, dp) + matrix[row][col];
-        int down = Integer.MAX_VALUE;
-        if(row<matrix.length-1) down = rec(matrix, row+1,col, dp) + matrix[row][col];
-        return dp[row][col] =  Math.min(down, Math.min(dLeft, dRight));
+    public int f(int i, int j, int[][] a, int[][] dp) {
+        if(j<0 || j>=a[0].length) return Integer.MAX_VALUE;
+        if(i==0) return a[0][j];
+        if(dp[i][j]!=Integer.MIN_VALUE) return dp[i][j];
+        int up = f(i-1, j, a, dp);
+        int left = f(i-1, j-1, a, dp);
+        int right = f(i-1, j+1, a, dp);
+        return  dp[i][j] = Math.min(up, Math.min(left, right))+a[i][j];
+
+
     }
     public int minFallingPathSum(int[][] matrix) {
+        int m = matrix[0].length;
+        int n = matrix.length;
         int min = Integer.MAX_VALUE;
-        for(int i=0; i<matrix.length; i++) {
-            int[][] dp = new int[matrix.length][matrix[0].length];
-            for (int[] row : dp) {
-                Arrays.fill(row, -101);
-            }
-            int curr = rec(matrix, 0, i,dp);
-            min = Math.min(curr, min);
+        int[][] dp = new int[n][m];
+        for(int [] arr: dp) Arrays.fill(arr, Integer.MIN_VALUE);
+        for(int j=0; j<m; j++) {
+            min = Math.min(f(n-1, j, matrix, dp), min);
         }
         return min;
         
