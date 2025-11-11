@@ -1,4 +1,4 @@
-// Last updated: 11/11/2025, 06:51:34
+// Last updated: 11/11/2025, 21:42:07
 class Solution {
     public int f(int i, int j, int[][] a, int[][] dp) {
         if(j<0 || j>=a[0].length) return Integer.MAX_VALUE;
