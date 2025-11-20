@@ -1,4 +1,4 @@
-// Last updated: 20/11/2025, 14:45:34
+// Last updated: 20/11/2025, 14:46:44
 class Solution {
     public int minimumArea(int[][] grid) {
         int minRow = Integer.MAX_VALUE;
@@ -15,8 +15,6 @@ class Solution {
                 }
             }
         }
-
-        System.out.println(minRow + " " + maxRow +" " + minCol +" " + maxCol);
         int c=0;
         for(int i=minRow; i<=maxRow; i++) {
             for(int j=minCol; j<=maxCol; j++) {
