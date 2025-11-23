@@ -1,4 +1,4 @@
-// Last updated: 29/09/2025, 14:50:40
+// Last updated: 23/11/2025, 20:55:39
 class Solution {
     public void emptyRow(int[][] arr, int row) {
         for(int col=0; col<arr[0].length; col++) {
