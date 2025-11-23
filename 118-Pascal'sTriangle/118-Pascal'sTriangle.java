@@ -1,22 +1,18 @@
-// Last updated: 23/11/2025, 21:59:22
+// Last updated: 23/11/2025, 22:08:11
 class Solution {
-    public int nCr(int n, int r) {
-        long res = 1;
-        for(int i=0; i<r; i++) {
-            res = res * (n-i);
-            res = res/ (i+1);
-        }
-        return (int) res;
-    }
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> ans = new ArrayList<>();
 
-        for(int i=0; i<numRows; i++) {
+        for(int i=1; i<=numRows; i++) {
             List<Integer> ll = new ArrayList<>();
-            for(int j=0; j<=i; j++) {
-                ll.add(nCr(i,j));
-            }
-            ans.add(ll);  
+            int res = 1;
+            ll.add(res);
+            for(int j=1; j<i; j++) {
+                res = res * (i-j);
+                res = res / j;
+                ll.add(res);
+            } 
+            ans.add(ll);
         }
         return ans;
         
