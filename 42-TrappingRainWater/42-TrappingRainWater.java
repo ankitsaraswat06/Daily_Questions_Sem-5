@@ -1,24 +1,21 @@
-// Last updated: 21/10/2025, 15:41:12
-class Solution {
-    public int trap(int[] height) {
-        int n = height.length;
-        int[] lM = new int[n];
-        lM[0] = height[0];
-        for(int i=1; i<n; i++) {
-            lM[i] = Math.max(lM[i-1], height[i]);
-        }
-        int rM[] = new int[n];
-        rM[n-1] = height[n-1];
-        for(int i=n-2; i>=0; i--) {
-            rM[i] = Math.max(rM[i+1], height[i]);
-        }
-
-        int tW = 0;
-        for(int i=0; i<n; i++) {
-            tW = tW + Math.min(rM[i], lM[i]) - height[i];
-        }
-
-        return tW;
-
-    }
-}
+// Last updated: 10/12/2025, 21:07:23
+1class Solution {
+2    public int trap(int[] height) {
+3        int n = height.length;
+4        int[] leftMax = new int[n];
+5        leftMax[0] = height[0];
+6        for(int i=1; i<n; i++) {
+7            leftMax[i] = Math.max(leftMax[i-1], height[i]);
+8        }
+9        int[] rightMax = new int[n];
+10        rightMax[n-1] = height[n-1];
+11        for(int i=n-2; i>=0; i--) {
+12            rightMax[i] = Math.max(rightMax[i+1], height[i]);
+13        }
+14        int total = 0;
+15        for(int i=0; i<n; i++) {
+16            total += Math.min(leftMax[i], rightMax[i])-height[i];
+17        }
+18        return total;
+19    }
+20}
