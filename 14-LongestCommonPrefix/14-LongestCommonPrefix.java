@@ -1,25 +1,23 @@
-// Last updated: 08/10/2025, 08:10:02
-class Solution {
-    public boolean isEqual(int idx, String strs[]) {
-        for(int i=1; i<strs.length; i++) {
-            if(strs[i].charAt(idx)!=strs[i-1].charAt(idx)) return false;
-        }
-        return true;
-    }
-    public String longestCommonPrefix(String[] strs) {
-        StringBuilder prefix = new StringBuilder();
-        int idx = 0;
-        int n= Integer.MAX_VALUE;
-        for(String str: strs) {
-            n = Math.min(n, str.length());
-        }
-        while(idx<n) {
-            if(isEqual(idx, strs)) {
-                prefix.append(strs[0].charAt(idx));
-                idx++;
-            }
-            else break;
-        }
-        return prefix.toString();
-    }
-}
+// Last updated: 19/12/2025, 10:31:47
+1class Solution {
+2    public boolean isEqual(String strs[], int idx) {
+3        for(int i=1; i<strs.length; i++) {
+4            if(strs[i-1].charAt(idx)!=strs[i].charAt(idx)) return false;
+5        }
+6        return true;
+7
+8    }
+9    public String longestCommonPrefix(String[] strs) {
+10        int n = strs[0].length();
+11        for(String str: strs) n = Math.min(str.length(), n);
+12        int idx = 0;
+13        StringBuilder ans = new StringBuilder();
+14        while(idx<n) {
+15            if(isEqual(strs, idx)) ans.append(strs[0].charAt(idx));
+16            else break;
+17            idx++;
+18        }
+19        return ans.toString();
+20        
+21    }
+22}
