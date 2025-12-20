@@ -1,4 +1,4 @@
-// Last updated: 20/12/2025, 11:35:30
+// Last updated: 20/12/2025, 13:59:51
 1class RandomizedSet {
 2    List<Integer> list;
 3    Map<Integer, Integer> map;
