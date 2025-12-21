@@ -1,4 +1,4 @@
-// Last updated: 20/12/2025, 18:04:41
+// Last updated: 21/12/2025, 08:42:02
 1class Solution {
 2    public boolean isLongPressedName(String name, String typed) {
 3        int i=0, j=0;
