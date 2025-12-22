@@ -1,4 +1,4 @@
-// Last updated: 21/12/2025, 21:53:04
+// Last updated: 22/12/2025, 11:06:29
 1class Solution {
 2    public boolean isNice(String s) {
 3        if(s.length()==1 || s.length()==0) return false;
