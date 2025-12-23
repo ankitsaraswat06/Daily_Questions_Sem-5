@@ -1,4 +1,4 @@
-// Last updated: 22/12/2025, 18:12:51
+// Last updated: 23/12/2025, 14:19:45
 1class Solution {
 2    int MOD = 1000000007;
 3    public int numWays(String s) {
