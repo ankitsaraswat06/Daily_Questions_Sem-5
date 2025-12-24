@@ -1,4 +1,4 @@
-// Last updated: 23/12/2025, 19:13:18
+// Last updated: 24/12/2025, 11:22:27
 1class Solution {
 2    public String smallestString(String str) {
 3        StringBuilder s = new StringBuilder(str);
