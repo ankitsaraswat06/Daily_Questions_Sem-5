@@ -1,31 +1,27 @@
-// Last updated: 30/12/2025, 11:57:32
+// Last updated: 30/12/2025, 11:58:44
 1class Solution {
-2    public int maxAreaOfIsland(int[][] grid) {
-3        return answer(grid);
-4    }
-5    public static int answer(int[][] arr){
-6        int n = arr.length;
-7        int m  = arr[0].length;
-8        int max = 0;
-9        for(int i=0;i<n;i++){
-10            for(int j=0;j<m;j++){
-11                if(arr[i][j]==1){
-12                    max = Math.max(max,maxArea(i,j,arr));
-13                }
-14            }
-15        }
-16        return max;
-17    }
-18    public static int maxArea(int row,int col,int[][] arr){
-19        if(col<0 || row<0 || row>=arr.length || col>=arr[0].length || arr[row][col] != 1){
-20            return 0;
-21        }
-22        arr[row][col] =0;
-23        int left = maxArea(row,col-1,arr);
-24        int up = maxArea(row-1,col,arr);
-25        int right = maxArea(row,col+1,arr);
-26        int down = maxArea(row+1,col,arr);
-27
-28        return left+up+right+down+1;
-29    }
-30}
+2    public int dfs(int[][] grid, int i, int j) {
+3       if(i<0 || i>=grid.length || j<0 || j>=grid[0].length) return 0;
+4       if(grid[i][j]!=1 || grid[i][j]==4) return 0;
+5       grid[i][j] = 4;
+6       int a = dfs(grid, i+1, j);
+7       int b= dfs(grid, i-1, j);
+8       int c = dfs(grid, i, j+1);
+9       int d = dfs(grid, i, j-1);
+10       return a+b+c+d+1;
+11        
+12    }
+13    public int maxAreaOfIsland(int[][] grid) {
+14        int ans = 0;
+15        for(int i=0; i<grid.length; i++) {
+16            for(int j=0; j<grid[0].length; j++) {
+17                if(grid[i][j]==1) {
+18                    int a= dfs(grid, i, j);
+19                    ans = Math.max(ans, a);
+20                }
+21            }
+22        }
+23        return ans;
+24        
+25    }
+26}
