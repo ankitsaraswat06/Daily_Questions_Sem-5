@@ -1,4 +1,4 @@
-// Last updated: 30/12/2025, 10:42:38
+// Last updated: 31/12/2025, 10:36:07
 1class Solution {
 2    public boolean validPath(int n, int[][] edges, int source, int destination) {
 3        Map<Integer, List<Integer>> graph = new HashMap<>();
