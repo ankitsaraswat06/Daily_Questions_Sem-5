@@ -1,20 +1,20 @@
-// Last updated: 04/10/2025, 12:19:04
-class Solution {
-    public void rec(int n, String s, int open, int close , List<String> ans) {
-        if(open==n && close==n) {
-            ans.add(s);
-            return;
-        }
-        if(open < n) {
-            rec(n, s+"(" , open+1, close, ans);
-        }
-        if(close<open) {
-            rec(n, s+")", open, close+1, ans);
-        }
-    }
-    public List<String> generateParenthesis(int n) {
-        List<String> ans= new ArrayList<>();
-        rec(n, "", 0, 0,ans);
-        return ans;
-    }
-}
+// Last updated: 31/12/2025, 22:59:03
+1class Solution {
+2    public void rec(int n, String s, int open, int close , List<String> ans) {
+3        if(open==n && close==n) {
+4            ans.add(s);
+5            return;
+6        }
+7        if(open < n) {
+8            rec(n, s+"(" , open+1, close, ans);
+9        }
+10        if(close<open) {
+11            rec(n, s+")", open, close+1, ans);
+12        }
+13    }
+14    public List<String> generateParenthesis(int n) {
+15        List<String> ans= new ArrayList<>();
+16        rec(n, "", 0, 0,ans);
+17        return ans;
+18    }
+19}
