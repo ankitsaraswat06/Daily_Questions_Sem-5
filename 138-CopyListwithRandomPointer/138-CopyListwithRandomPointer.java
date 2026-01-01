@@ -1,4 +1,4 @@
-// Last updated: 01/01/2026, 12:39:59
+// Last updated: 01/01/2026, 12:46:36
 1/*
 2// Definition for a Node.
 3class Node {
@@ -16,25 +16,20 @@
 15
 16class Solution {
 17    public Node copyRandomList(Node head) {
-18        if(head == null) return null;
-19
+18        if(head==null) return null;
+19        Node temp = head;
 20        Map<Node, Node> map = new HashMap<>();
-21        Node curr = head;
-22
-23        while(curr != null) {
-24            map.put(curr, new Node(curr.val));
-25            curr = curr.next;
-26        }
-27
-28        curr = head;
-29        while(curr != null) {
-30            Node copy = map.get(curr);
-31            copy.next = map.get(curr.next);
-32            copy.random = map.get(curr.random);
-33            curr = curr.next;
-34        }
-35
-36        return map.get(head);
-37        
-38    }
-39}
+21        while(temp!=null) {
+22            map.put(temp, new Node(temp.val));
+23            temp = temp.next;
+24        }
+25        temp = head;
+26        while(temp!=null) {
+27            Node copy  = map.get(temp);
+28            copy.next = map.get(temp.next);
+29            copy.random = map.get(temp.random);
+30            temp = temp.next;
+31        }
+32        return map.get(head);
+33    }
+34}
