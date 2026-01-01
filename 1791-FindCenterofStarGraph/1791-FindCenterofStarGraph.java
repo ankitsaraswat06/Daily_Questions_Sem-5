@@ -1,17 +1,14 @@
-// Last updated: 01/01/2026, 10:39:26
+// Last updated: 01/01/2026, 11:05:04
 1class Solution {
 2    public int findCenter(int[][] edges) {
-3        HashMap<Integer, Integer> freq = new HashMap<>();
-4        for(int i=0; i<edges.length; i++) {
-5            int a= edges[i][0];
-6            int b = edges[i][1];
-7            freq.put(a, freq.getOrDefault(a, 0)+1);
-8            freq.put(b, freq.getOrDefault(b,0)+1);
-9        } 
-10        for(int key: freq.keySet()) {
-11            if(freq.get(key)==edges.length) return key;
-12        }
-13        return -1;
-14        
-15    }
-16}
+3        int com = 0;
+4        if(edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1]) {
+5            com = edges[0][0];
+6        }
+7        if(edges[0][1] == edges[1][0] || edges[0][1] == edges[1][1]) {
+8            com = edges[0][1];
+9        }
+10        return com;
+11        
+12    }
+13}
