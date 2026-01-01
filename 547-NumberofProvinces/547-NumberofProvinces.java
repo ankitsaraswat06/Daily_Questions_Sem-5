@@ -1,4 +1,4 @@
-// Last updated: 01/01/2026, 10:27:47
+// Last updated: 01/01/2026, 10:28:02
 1class Solution {
 2    public int findCircleNum(int[][] mat) {
 3        Map<Integer, List<Integer>> graph = new HashMap<>();
