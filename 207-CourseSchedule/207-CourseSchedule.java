@@ -1,4 +1,4 @@
-// Last updated: 31/12/2025, 11:58:49
+// Last updated: 01/01/2026, 10:22:06
 1class Solution {
 2    public boolean canFinish(int V, int[][] edges) {
 3        Map<Integer, List<Integer>> map =new HashMap<>();
