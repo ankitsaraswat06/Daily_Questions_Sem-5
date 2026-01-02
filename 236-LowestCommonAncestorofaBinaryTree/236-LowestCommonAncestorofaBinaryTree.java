@@ -1,21 +1,25 @@
-// Last updated: 08/10/2025, 08:25:06
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root==null) return null;
-        if(root==p || root==q) return root;
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
-        if(right!=null && left!=null) return root;
-        else if(left==null) return right;
-        else return left;
-    }
-}
+// Last updated: 02/01/2026, 16:03:50
+1/**
+2 * Definition for a binary tree node.
+3 * public class TreeNode {
+4 *     int val;
+5 *     TreeNode left;
+6 *     TreeNode right;
+7 *     TreeNode(int x) { val = x; }
+8 * }
+9 */
+10class Solution {
+11    public TreeNode lca(TreeNode root, TreeNode p, TreeNode q) {
+12        if(root == null) return null;
+13        if(root==p || root==q) return root;
+14        TreeNode left = lca(root.left, p, q);
+15        TreeNode right = lca(root.right, p, q);
+16        if(left!=null && right!=null) return root;
+17        if(left==null) return right;
+18        else return left;
+19    }
+20    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+21        return lca(root, p, q);
+22        
+23    }
+24}
