@@ -1,4 +1,4 @@
-// Last updated: 02/01/2026, 11:02:26
+// Last updated: 02/01/2026, 11:16:46
 1/*
 2// Definition for a Node.
 3class Node {
@@ -23,23 +23,24 @@
 22    public Node cloneGraph(Node node) {
 23        if(node==null) return null;
 24        HashMap<Node, Node> map =new HashMap<>();
-25        HashSet<Node> vis = new HashSet<>();
-26        Queue<Node> q = new LinkedList<>();
-27       map.put(node, new Node(node.val));
-28        q.offer(node);
-29       
-30        while(!q.isEmpty()) {
-31            Node curr = q.poll();
-32
-33            for (Node nbr : curr.neighbors) {
-34                if (!map.containsKey(nbr)) {
-35                    map.put(nbr, new Node(nbr.val));
-36                    q.offer(nbr);
-37                }
-38                map.get(curr).neighbors.add(map.get(nbr));
-39            }
-40        }
-41        return map.get(node);        
-42        
-43    }
-44}
+25        Queue<Node> q = new LinkedList<>();
+26       map.put(node, new Node(node.val));
+27        q.offer(node);
+28       
+29        while(!q.isEmpty()) {
+30            Node curr = q.poll();
+31
+32            for (Node nbr : curr.neighbors) {
+33                if (!map.containsKey(nbr)) {
+34                    map.put(nbr, new Node(nbr.val));
+35                    q.offer(nbr);
+36                }
+37                Node copy = map.get(curr);
+38                Node copyNbr = map.get(nbr);
+39                copy.neighbors.add(copyNbr);
+40            }
+41        }
+42        return map.get(node);     
+43        
+44    }
+45}
