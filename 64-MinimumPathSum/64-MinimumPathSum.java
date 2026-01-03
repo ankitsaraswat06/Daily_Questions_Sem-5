@@ -1,31 +1,24 @@
-// Last updated: 09/11/2025, 10:44:33
-class Solution {
-    public int f(int i, int j, int[][] grid, int[][] dp) {
-        if(i==0 && j==0) return grid[i][j];
-        if(i<0 || j<0) return Integer.MAX_VALUE;
-        if(dp[i][j]!=-1) return dp[i][j];
-        int up = f(i-1, j, grid, dp);
-        int left = f(i, j-1, grid, dp);
-        return dp[i][j] =  grid[i][j] + Math.min(up, left);
-    }
-    public int minPathSum(int[][] grid) {
-        int m = grid.length; 
-        int n= grid[0].length;
-        int[][] dp = new int[m][n];
-        // for(int []arr: dp) Arrays.fill(arr,-1);
-        // return f(m-1, n-1, grid, dp);
-        // Tabulation Approach
-        dp[0][0] = grid[0][0];
-        for(int i=0; i<m; i++) {
-            for(int j=0; j<n; j++) {
-                if(i==0 && j==0) continue;
-                int up=Integer.MAX_VALUE;
-                if(i>0) up= dp[i-1][j];
-                int left = Integer.MAX_VALUE;
-                if(j>0) left = dp[i][j-1];
-                dp[i][j] = Math.min(up, left) + grid[i][j];
-            }
-        }
-        return dp[m-1][n-1];
-    }
-}
+// Last updated: 03/01/2026, 15:08:07
+1class Solution {
+2    public int rec(int[][] grid, int r, int c, int[][] dp) {
+3        if(r==0 && c==0) return grid[r][c];
+4        if(dp[r][c]!=-1) return dp[r][c];
+5
+6        int a = Integer.MAX_VALUE;
+7        if(r>=1) a = rec(grid, r-1, c, dp);
+8        int b = Integer.MAX_VALUE;
+9        if(c>=1) b = rec(grid, r, c-1, dp);
+10
+11        return dp[r][c] = Math.min(a, b)+grid[r][c];
+12    }
+13    public int minPathSum(int[][] grid) {
+14        int n = grid.length;
+15        int m = grid[0].length;
+16        int[][] dp = new int[n][m];
+17        for(int el[]: dp) {
+18            Arrays.fill(el, -1);
+19        }
+20        return rec(grid, n-1, m-1, dp);
+21        
+22    }
+23}
