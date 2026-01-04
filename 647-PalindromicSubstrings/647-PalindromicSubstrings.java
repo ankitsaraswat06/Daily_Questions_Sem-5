@@ -1,23 +1,25 @@
-// Last updated: 04/01/2026, 11:58:59
+// Last updated: 04/01/2026, 12:02:52
 1class Solution {
-2    public boolean isPal(String s, int i, int j) {
+2    public boolean isPal(String s, int i, int j, Boolean[][] dp) {
 3        if(i>j) return true;
-4        boolean a = s.charAt(i) == s.charAt(j);
-5        boolean b = isPal(s, i+1, j-1);
-6        return a && b;
-7    }
-8    public int countSubstrings(String s) {
-9        int n= s.length();
-10        int ans = 0;
-11
-12        int c= 0;
-13        for(int i=0; i<n; i++) {
-14            for(int j=i; j<n; j++) {
-15                if(isPal(s, i, j)) c++;
-16            }
-17        }
-18        return c;
-19
-20        
-21    }
-22}
+4        if(dp[i][j]!=null) return dp[i][j];
+5        boolean a = s.charAt(i) == s.charAt(j);
+6        boolean b = isPal(s, i+1, j-1, dp);
+7        return dp[i][j] = a && b;
+8    }
+9    public int countSubstrings(String s) {
+10        int n= s.length();
+11        int ans = 0;
+12
+13        int c= 0;
+14        Boolean[][] dp = new Boolean[n][n];
+15        for(int i=0; i<n; i++) {
+16            for(int j=i; j<n; j++) {
+17                if(isPal(s, i, j, dp)) c++;
+18            }
+19        }
+20        return c;
+21
+22        
+23    }
+24}
