@@ -1,14 +1,14 @@
-// Last updated: 05/01/2026, 13:08:41
+// Last updated: 05/01/2026, 13:11:36
 1class Solution {
 2
 3    public boolean solve(String s, int idx, Set<String> dict, Boolean[] dp) {
 4        if (idx == s.length()) return true;
 5        if(dp[idx]!=null) return dp[idx];
 6
-7        for (int end = idx + 1; end <= s.length(); end++) {
-8            String part = s.substring(idx, end);
+7        for (int i = idx; i < s.length(); i++) {
+8            String part = s.substring(idx, i+1);
 9            if (dict.contains(part)) {
-10                if (solve(s, end, dict, dp)) {
+10                if (solve(s, i+1, dict, dp)) {
 11                    return dp[idx] = true;
 12                }
 13            }
