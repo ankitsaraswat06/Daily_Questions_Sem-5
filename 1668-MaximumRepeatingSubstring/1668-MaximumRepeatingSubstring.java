@@ -1,4 +1,4 @@
-// Last updated: 04/01/2026, 11:23:02
+// Last updated: 08/01/2026, 15:14:02
 1class Solution {
 2    public int maxRepeating(String s, String word) {
 3        int count = 0;
