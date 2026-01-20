@@ -1,44 +1,44 @@
-// Last updated: 21/10/2025, 15:01:34
-class MinStack {
-    class Pair {
-        int first;
-        int second;
-        Pair(int first, int second) {
-            this.first = first;
-            this.second = second;
-        }
-    }
-    private Stack<Pair> st;
-    public MinStack() {
-        st = new Stack<>();
-    }
-    
-    public void push(int val) {
-        if(st.isEmpty()) st.push(new Pair(val, val));
-        else {
-            Pair p = new Pair(val, Math.min(st.peek().second, val));
-            st.push(p);
-        }
-    }
-    
-    public void pop() {
-        st.pop();
-    }
-    
-    public int top() {
-        return st.peek().first;
-    }
-    
-    public int getMin() {
-        return st.peek().second;
-    }
-}
-
-/**
- * Your MinStack object will be instantiated and called as such:
- * MinStack obj = new MinStack();
- * obj.push(val);
- * obj.pop();
- * int param_3 = obj.top();
- * int param_4 = obj.getMin();
- */
+// Last updated: 20/01/2026, 14:38:57
+1class MinStack {
+2    class Pair {
+3        int first;
+4        int second;
+5        Pair(int first, int second) {
+6            this.first = first;
+7            this.second = second;
+8        }
+9    }
+10    private Stack<Pair> st;
+11    public MinStack() {
+12        st = new Stack<>();
+13    }
+14    
+15    public void push(int val) {
+16        if(st.isEmpty()) st.push(new Pair(val, val));
+17        else {
+18            Pair p = new Pair(val, Math.min(st.peek().second, val));
+19            st.push(p);
+20        }
+21    }
+22    
+23    public void pop() {
+24        st.pop();
+25    }
+26    
+27    public int top() {
+28        return st.peek().first;
+29    }
+30    
+31    public int getMin() {
+32        return st.peek().second;
+33    }
+34}
+35
+36/**
+37 * Your MinStack object will be instantiated and called as such:
+38 * MinStack obj = new MinStack();
+39 * obj.push(val);
+40 * obj.pop();
+41 * int param_3 = obj.top();
+42 * int param_4 = obj.getMin();
+43 */
