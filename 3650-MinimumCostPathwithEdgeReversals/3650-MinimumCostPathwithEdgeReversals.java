@@ -1,4 +1,4 @@
-// Last updated: 30/12/2025, 10:28:20
+// Last updated: 27/01/2026, 13:40:32
 1class Solution {
 2    public int minCost(final int n, final int[][] edges) {
 3        final List<int[]>[] adj = new List[n];
