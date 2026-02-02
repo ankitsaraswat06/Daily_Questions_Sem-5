@@ -1,43 +1,41 @@
-// Last updated: 31/10/2025, 14:52:53
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-class Solution {
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-        ListNode temp1 = list1;
-        ListNode temp2 = list2;
-        ListNode dummy = new ListNode();
-        ListNode curr = dummy;
-        while(temp1!=null && temp2!=null) {
-            if(temp1.val <= temp2.val) {
-                curr.next = temp1;
-                temp1 = temp1.next;
-            }
-            else  {
-                curr.next = temp2;
-                temp2 = temp2.next;
-            }
-            curr = curr.next;
-        }
-        while(temp1!=null) {
-            curr.next = temp1;
-            temp1 = temp1.next;
-            curr = curr.next;
-        }
-        while(temp2!=null) {
-            curr.next = temp2;
-            temp2 = temp2.next;
-            curr = curr.next;
-        }
-
-        return dummy.next;
-        
-    }
-}
+// Last updated: 02/02/2026, 14:16:53
+1/**
+2 * Definition for singly-linked list.
+3 * public class ListNode {
+4 *     int val;
+5 *     ListNode next;
+6 *     ListNode() {}
+7 *     ListNode(int val) { this.val = val; }
+8 *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+9 * }
+10 */
+11class Solution {
+12    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+13        ListNode t1 =list1;
+14        ListNode t2 = list2;
+15        ListNode dummy = new ListNode();
+16        ListNode curr = dummy;
+17        while(t1!=null && t2!=null) {
+18            if(t1.val<t2.val) {
+19                curr.next = t1;
+20                t1 = t1.next;
+21            } else {
+22                curr.next = t2;
+23                t2 = t2.next;
+24            }
+25            curr = curr.next;
+26        }
+27        while(t1!=null) {
+28            curr.next = t1;
+29            t1 = t1.next;
+30            curr = curr.next;
+31        }
+32        while(t2!=null) {
+33            curr.next = t2;
+34            t2 = t2.next;
+35            curr = curr.next;
+36        }
+37        return dummy.next;
+38        
+39    }
+40}
