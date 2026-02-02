@@ -1,25 +1,25 @@
-// Last updated: 31/10/2025, 15:01:50
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-public class Solution {
-    public boolean hasCycle(ListNode head) {
-        ListNode slow = head;
-        ListNode fast = head;
-        while(fast!=null && fast.next!=null) {
-            slow = slow.next;
-            fast = fast.next.next;
-            if(slow==fast) return true;
-        }
-        return false;
-        
-    }
-}
+// Last updated: 02/02/2026, 12:49:43
+1/**
+2 * Definition for singly-linked list.
+3 * class ListNode {
+4 *     int val;
+5 *     ListNode next;
+6 *     ListNode(int x) {
+7 *         val = x;
+8 *         next = null;
+9 *     }
+10 * }
+11 */
+12public class Solution {
+13    public boolean hasCycle(ListNode head) {
+14        ListNode slow = head;
+15        ListNode fast = head;
+16        while(fast!=null && fast.next!=null) {
+17            slow = slow.next;
+18            fast = fast.next.next;
+19            if(slow==fast) return true;
+20        }
+21        return false;
+22        
+23    }
+24}
