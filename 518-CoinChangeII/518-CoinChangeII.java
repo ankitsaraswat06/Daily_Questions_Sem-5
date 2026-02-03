@@ -1,21 +1,19 @@
-// Last updated: 10/10/2025, 19:55:26
-class Solution {
-    public int change(int amount, int[] coin) {
-        int[][] dp = new int[coin.length + 1][amount+1];
-        for(int i=0; i<dp.length; i++) {//row
-            dp[i][0] = 1;
-        }
-        for(int i=1; i<dp.length; i++) {
-            for (int am =1; am<dp[0].length; am++) {
-                int inc = 0, exc = 0;
-                if(am>=coin[i-1]) {
-                    inc  = dp[i][am- coin[i-1]];
-                }
-                exc = dp[i-1][am];
-                dp[i][am] = inc+exc;
-            }
-        }
-
-        return dp[dp.length-1][dp[0].length-1];
-    }
-}
+// Last updated: 03/02/2026, 13:00:35
+1class Solution {
+2    public int rec(int amount, int[] coins, int idx, int[][] dp) {
+3        if(idx>=coins.length) {
+4            return amount==0?1:0;
+5        }
+6        if(dp[idx][amount]!=-1) return dp[idx][amount];
+7        int pick = 0;
+8        if(amount-coins[idx]>=0) pick = rec(amount-coins[idx], coins, idx, dp);
+9        int nonpick =rec(amount, coins, idx+1, dp);
+10        return dp[idx][amount] = pick + nonpick;
+11    }
+12    public int change(int amount, int[] coins) {
+13        int[][] dp =new int[coins.length][amount+1];
+14        for(int el[]: dp) Arrays.fill(el,-1);
+15        return rec(amount, coins, 0, dp);
+16        
+17    }
+18}
