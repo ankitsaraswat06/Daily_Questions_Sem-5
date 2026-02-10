@@ -1,4 +1,4 @@
-// Last updated: 10/02/2026, 16:23:36
+// Last updated: 10/02/2026, 16:30:48
 1/**
 2 * Definition for a binary tree node.
 3 * public class TreeNode {
@@ -15,35 +15,19 @@
 14 * }
 15 */
 16class Solution {
-17    public TreeNode reverseOddLevels(TreeNode root) {
-18        Queue<TreeNode> q = new LinkedList<>();
-19        q.offer(root);
-20        int l = 0;
-21        while(!q.isEmpty()) {
-22            int size = q.size();
-23            List<TreeNode> ll = new ArrayList<>();
-24            while(size-->0) {
-25                TreeNode rv = q.poll();
-26                ll.add(rv);
-27                if(rv.left!=null) q.offer(rv.left);
-28                if(rv.right!=null) q.offer(rv.right);
-29            }
-30
-31            if(l%2!=0) {
-32                int si = 0;
-33                int ei = ll.size()-1;
-34                while(si<ei) {
-35                    int temp = ll.get(si).val;
-36                    ll.get(si).val = ll.get(ei).val;
-37                    ll.get(ei).val = temp;
-38                    si++;
-39                    ei--;
-40                }
-41            }
-42            l++;
-43
-44        }
-45        return root;
-46        
-47    }
-48}
+17    public void rec(TreeNode left, TreeNode right, int l) {
+18        if(left==null) return;
+19        if(l%2!=0) {
+20            int temp = left.val;
+21            left.val = right.val;
+22            right.val = temp;
+23        }
+24        rec(left.left, right.right, l+1);
+25        rec(left.right,right.left, l+1);
+26    }
+27    public TreeNode reverseOddLevels(TreeNode root) {
+28        rec(root.left, root.right, 1);
+29        return root;
+30        
+31    }
+32}
