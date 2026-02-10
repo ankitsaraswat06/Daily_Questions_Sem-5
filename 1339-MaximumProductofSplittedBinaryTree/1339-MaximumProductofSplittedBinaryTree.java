@@ -1,4 +1,4 @@
-// Last updated: 10/02/2026, 15:37:23
+// Last updated: 10/02/2026, 15:38:44
 1/**
 2 * Definition for a binary tree node.
 3 * public class TreeNode {
@@ -20,26 +20,20 @@
 19        if(root==null) return 0;
 20        long ansL = 0;
 21        long ansR = 0;
-22        if(root.left!=null) {
-23            
-24            ansL= (long)(tSum-root.left.val) * root.left.val;
-25        }
-26        if(root.right!=null) {
-27            
-28            ansR=(long)(tSum-root.right.val)*root.right.val;
-29        }
-30        long ans = Math.max(ansL, ansR);
-31        return Math.max(ans, Math.max(find(root.left, tSum), find(root.right, tSum)));
-32    }
-33    public long rec(TreeNode root) {
-34        if(root==null) return 0;
-35        if(root.left==null && root.right==null) return root.val;
-36        long sum = rec(root.left) + rec(root.right) + root.val;
-37        root.val = (int)sum;
-38        return sum;
-39    }
-40    public int maxProduct(TreeNode root) {
-41        int tSum = (int)rec(root);
-42        return (int)(find(root, tSum)%MOD);
-43    }
-44}
+22        if(root.left!=null) ansL= (long)(tSum-root.left.val) * root.left.val;
+23        if(root.right!=null) ansR=(long)(tSum-root.right.val)*root.right.val;
+24        long ans = Math.max(ansL, ansR);
+25        return Math.max(ans, Math.max(find(root.left, tSum), find(root.right, tSum)));
+26    }
+27    public long rec(TreeNode root) {
+28        if(root==null) return 0;
+29        if(root.left==null && root.right==null) return root.val;
+30        long sum = rec(root.left) + rec(root.right) + root.val;
+31        root.val = (int)sum;
+32        return sum;
+33    }
+34    public int maxProduct(TreeNode root) {
+35        int tSum = (int)rec(root);
+36        return (int)(find(root, tSum)%MOD);
+37    }
+38}
