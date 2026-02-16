@@ -1,38 +1,31 @@
-// Last updated: 02/08/2025, 18:58:38
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-class Solution {
-    class BalancePair {
-        boolean isBal= true;
-        int ht = -1;
-    }
-    public BalancePair isBalance(TreeNode root) {
-        if(root==null) {
-            return new BalancePair();
-        }
-        BalancePair lbp = isBalance(root.left);
-        BalancePair rbp = isBalance(root.right);
-        BalancePair sbp = new BalancePair();
-        sbp.ht = Math.max(lbp.ht , rbp.ht) + 1;
-        boolean sb = Math.abs(lbp.ht - rbp.ht) <= 1;
-        sbp.isBal = lbp.isBal && rbp.isBal && sb;
-        return sbp;
-
-    }
-    public boolean isBalanced(TreeNode root) {
-        return isBalance(root).isBal;
-    }
-}
+// Last updated: 16/02/2026, 12:17:32
+1/**
+2 * Definition for a binary tree node.
+3 * public class TreeNode {
+4 *     int val;
+5 *     TreeNode left;
+6 *     TreeNode right;
+7 *     TreeNode() {}
+8 *     TreeNode(int val) { this.val = val; }
+9 *     TreeNode(int val, TreeNode left, TreeNode right) {
+10 *         this.val = val;
+11 *         this.left = left;
+12 *         this.right = right;
+13 *     }
+14 * }
+15 */
+16class Solution {
+17    public int ht (TreeNode root) {
+18        if(root==null) return -1;
+19        int lh = ht(root.left);
+20        int rh = ht(root.right);
+21        return Math.max(lh, rh) + 1;
+22    }
+23    public boolean isBalanced(TreeNode root) {
+24        if(root==null) return true;
+25        boolean isLeft = isBalanced(root.left);
+26        boolean isRight = isBalanced(root.right);
+27        boolean isSelfBalanced = Math.abs(ht(root.left) - ht(root.right)) <= 1;
+28        return isLeft && isRight && isSelfBalanced;
+29    }
+30}
