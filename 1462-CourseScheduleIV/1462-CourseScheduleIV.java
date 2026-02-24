@@ -1,53 +1,44 @@
-// Last updated: 24/02/2026, 15:58:32
+// Last updated: 24/02/2026, 16:11:17
 1class Solution {
-2    public List<Boolean> checkIfPrerequisite(int numCourses, int[][] arr, int[][] queries) {
-3        HashMap<Integer,ArrayList<Integer>> map=new HashMap<>();
-4        boolean isreachable[][]=new boolean[numCourses][numCourses];
-5        for(int i=0;i<numCourses;i++){
-6            map.put(i,new ArrayList<>());
-7        }
-8
-9        for(int i=0;i<arr.length;i++){
-10            map.get(arr[i][0]).add(arr[i][1]);
-11        }
-12
-13        int indeg[]=new int[numCourses];
-14        for(int keys:map.keySet()){
-15            for(int nbrs:map.get(keys)){
-16                indeg[nbrs]++;
-17            }
-18        }
-19
-20        Queue<Integer> que=new LinkedList<>();
-21        ArrayList<Integer> order=new ArrayList<>();
-22
-23        for(int i=0;i<indeg.length;i++){
-24            if(indeg[i]==0){
-25                que.add(i);
-26            }
-27        }
-28        while(!que.isEmpty()){
-29            int u=que.poll();
-30            for(int v:map.get(u)){
-31                isreachable[u][v]=true;
-32                for(int i=0;i<numCourses;i++){
-33                    if(isreachable[i][u]){
-34                        isreachable[i][v]=true;
-35                    }
-36                }
-37
-38                indeg[v]--;
-39                if(indeg[v]==0){
-40                    que.add(v);
-41                }
-42            }
-43        }
-44        
-45        List<Boolean> ans = new ArrayList<>();
-46        for (int[] query : queries) {
-47            ans.add(isreachable[query[0]][query[1]]);
-48        }
-49        return ans;
-50        
-51    }
-52}
+2    List<Integer>[] graph;
+3    boolean[][] dp;   // dp[u][v] = is u prerequisite of v
+4    boolean[] visited;
+5
+6    public List<Boolean> checkIfPrerequisite(int numCourses, int[][] prerequisites, int[][] queries) {
+7        
+8        // Step 1: Build graph
+9        graph = new ArrayList[numCourses];
+10        for (int i = 0; i < numCourses; i++) {
+11            graph[i] = new ArrayList<>();
+12        }
+13        
+14        for (int[] pre : prerequisites) {
+15            graph[pre[0]].add(pre[1]);
+16        }
+17        
+18        dp = new boolean[numCourses][numCourses];
+19        
+20        // Step 2: Run DFS from each node
+21        for (int i = 0; i < numCourses; i++) {
+22            visited = new boolean[numCourses];
+23            dfs(i, i);
+24        }
+25        
+26        // Step 3: Answer queries
+27        List<Boolean> ans = new ArrayList<>();
+28        for (int[] q : queries) {
+29            ans.add(dp[q[0]][q[1]]);
+30        }
+31        
+32        return ans;
+33    }
+34    
+35    private void dfs(int start, int node) {
+36        for (int nei : graph[node]) {
+37            if (!dp[start][nei]) {   // If not already computed
+38                dp[start][nei] = true;
+39                dfs(start, nei);
+40            }
+41        }
+42    }
+43}
