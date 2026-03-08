@@ -1,22 +1,22 @@
-// Last updated: 08/03/2026, 09:54:53
+// Last updated: 08/03/2026, 09:58:34
 1class Solution {
-2    public void rec(int n, String ques, List<String> ll) {
-3        if(ques.length()==n) {
-4            ll.add(ques);
-5            return;
-6        }
-7        rec(n, ques+0, ll);
-8        rec(n, ques+1, ll);
-9    }
-10    public String findDifferentBinaryString(String[] nums) {
-11        int n = nums.length;
-12        List<String> ll = new ArrayList<>();
-13        rec(n, "", ll);
-14        HashSet<String> set = new HashSet<>();
-15        for(String str: nums) set.add(str);
-16        for(String str: ll) {
-17            if(!set.contains(str)) return str;
-18        }
-19        return "";
+2    String ans = "";
+3    public void rec(int n, String ques, HashSet<String> set) {
+4        if(ques.length()==n) {
+5            if(!set.contains(ques)) {
+6                ans = ques;
+7            }
+8            return;
+9        }
+10        rec(n, ques+0, set);
+11        rec(n, ques+1, set);
+12    }
+13    public String findDifferentBinaryString(String[] nums) {
+14        int n = nums.length;
+15        HashSet<String> set = new HashSet<>();
+16        for(String str: nums) set.add(str);
+17        rec(n, "", set);
+18        return ans;
+19
 20    }
 21}
